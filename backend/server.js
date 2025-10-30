@@ -12,6 +12,10 @@ app.use(express.json());     // Middleware to parse JSON bodies
 const notesRoute = require('./routes/notesRoute');          // Import the notes route
 app.use('/api/notes', notesRoute);              // Use the notes route for /api/notes endpoints 
 
+app.post('/test', (req, res) => {
+  res.json({ message: 'POST route working' });
+});
+
 
 // connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
