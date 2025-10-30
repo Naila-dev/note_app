@@ -3,6 +3,8 @@ const router = express.Router();
 const Note = require('../models/Note');
 
 // get all notes
+//  this route handles GET requests to fetch all notes from the database
+//  it uses the Note model to retrieve all notes and sends them as a JSON response 
 router.get('/', async (req, res) => {
   try {
     const notes = await Note.find();
@@ -13,6 +15,8 @@ router.get('/', async (req, res) => {
 });
 
 // add a new note
+// this route handles POST requests to add a new note to the database
+// it creates a new Note instance with the data from the request body, saves it to the database, and returns the created note as a JSON response
 router.post('/', async (req, res) => {
   try {
     const note = new Note(req.body);
@@ -24,6 +28,8 @@ router.post('/', async (req, res) => {
 });
 
 // delete a note
+// this route handles DELETE requests to remove a note by its ID
+// it uses the Note model to find and delete the note with the specified ID and returns a confirmation message as a JSON response
 router.delete('/:id', async (req, res) => {
   try {
     await Note.findByIdAndDelete(req.params.id);
